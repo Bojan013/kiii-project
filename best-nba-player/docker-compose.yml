@@ -1,0 +1,29 @@
+version: "3"
+services:
+  app-db:
+    image: "postgres"
+    container_name: "nba_players_app"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=nba-players-app
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - app-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://app-db:5432/nba-players-app
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin123
+    ports:
+      - "9091:9091"
+
+volumes:
+  postgres-data:
