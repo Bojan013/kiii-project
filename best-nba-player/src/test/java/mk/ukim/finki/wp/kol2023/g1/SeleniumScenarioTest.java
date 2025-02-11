@@ -396,7 +396,7 @@ public class SeleniumScenarioTest {
     private static String user = "user";
 
     @BeforeEach
-    private void setup(WebApplicationContext wac) {
+    public void setup(WebApplicationContext wac) {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
         this.driver = new HtmlUnitDriver(true);
     }
@@ -408,10 +408,10 @@ public class SeleniumScenarioTest {
         }
     }
 
-    @AfterAll
-    public static void finalizeAndSubmit() throws JsonProcessingException {
-        CodeExtractor.submitSourcesAndLogs();
-    }
+//    @AfterAll
+//    public static void finalizeAndSubmit() throws JsonProcessingException {
+//        CodeExtractor.submitSourcesAndLogs();
+//    }
 
     public static final String LIST_URL = "/players";
     public static final String ADD_URL = "/players/add";
