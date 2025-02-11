@@ -34,8 +34,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Navigate to best-nba-player directory
+        run: cd best-nba-player
+
       - name: Make mvnw executable
         run: chmod +x mvnw
+        working-directory: ./best-nba-player
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -47,14 +51,15 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
-          key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          key: maven-${{ runner.os }}-${{ hashFiles('best-nba-player/pom.xml') }}
           restore-keys: |
             maven-${{ runner.os }}-
 
-      - name: Build and test with Maven
+      - name: Run tests
         run: ./mvnw clean test
+        working-directory: ./best-nba-player
         env:
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/nba-players-app
           SPRING_DATASOURCE_USERNAME: admin
           SPRING_DATASOURCE_PASSWORD: admin123
-          SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub 
+          SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
