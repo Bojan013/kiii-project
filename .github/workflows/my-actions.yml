@@ -1,4 +1,4 @@
-name: Selenium Tests
+name: kiii-pipeline
 
 on:
   push:
