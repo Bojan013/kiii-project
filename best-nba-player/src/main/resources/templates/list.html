@@ -2,10 +2,163 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>WP Exam</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container for the content */
+        div.container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Form Styles */
+        #filter-form {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        #filter-form label {
+            font-weight: bold;
+        }
+
+        #filter-form input,
+        #filter-form select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #filter-form button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #filter-form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Add Player Link */
+        .add-item {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .add-item:hover {
+            background-color: #218838;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Action Buttons */
+        .delete-item,
+        .like-item,
+        .edit-item {
+            padding: 6px 12px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .delete-item {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .delete-item:hover {
+            background-color: #c82333;
+        }
+
+        .like-item {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .like-item:hover {
+            background-color: #e0a800;
+        }
+
+        .edit-item {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .edit-item:hover {
+            background-color: #138496;
+        }
+
+        /* Navigation Styles */
+        #nav {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        #nav li {
+            float: left;
+        }
+
+        #nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        #nav li a:hover {
+            background-color: #575757;
+        }
+    </style>
 </head>
 <body>
-
-<div>
+<div class="container">
     <!-- The form below should invoke the method PlayersController.showPlayers -->
     <form id="filter-form">
         <label for="pointsPerGame">Points Per Game</label>
@@ -36,7 +189,7 @@
         </tr>
         <!-- For each player you should have one <tr> like below -->
         <tr class="item" th:each="player:${players}">
-            <td th:text="${player.name}" >[player.name]</td>
+            <td th:text="${player.name}">[player.name]</td>
             <td th:text="${player.bio}">[player.bio]</td>
             <td th:text="${player.pointsPerGame}">[player.pointsPerGame]</td>
             <td th:text="${player.position}">[player.position]</td>
@@ -56,7 +209,6 @@
             </td>
         </tr>
     </table>
-
 </div>
 <div>
     <ul id="nav">
