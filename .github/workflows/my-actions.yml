@@ -14,9 +14,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: admin
-          POSTGRES_PASSWORD: admin123
-          POSTGRES_DB: nba-players-app
+          POSTGRES_USER: ${{ DOCKERHUB_USERNAME }}
+          POSTGRES_PASSWORD: ${{ DB_PASSWORD }}
+          POSTGRES_DB: ${{ POSTGRES_DB }}
         ports:
           - 5432:5432
         options: >-
@@ -59,9 +59,9 @@ jobs:
         run: ./mvnw clean test
         working-directory: ./best-nba-player
         env:
-          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/nba-players-app
-          SPRING_DATASOURCE_USERNAME: admin
-          SPRING_DATASOURCE_PASSWORD: admin123
+          SPRING_DATASOURCE_URL: ${{ DB_SOURCE }}
+          SPRING_DATASOURCE_USERNAME: ${{ DOCKERHUB_USERNAME }}
+          SPRING_DATASOURCE_PASSWORD: ${{ DB_PASSWORD }}
           SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
 
   docker:
