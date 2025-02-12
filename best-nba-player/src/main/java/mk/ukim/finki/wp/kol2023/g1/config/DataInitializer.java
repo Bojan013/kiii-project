@@ -26,6 +26,7 @@ public class DataInitializer {
     }
 
 //    @PostConstruct
+    //
     public void initData() {
         for (int i = 1; i < 6; i++) {
             this.teamService.create("Team: " + i);
